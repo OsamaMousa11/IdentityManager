@@ -1,3 +1,4 @@
+using IdentityManager.Models.IdentityEntityy;
 using IdentityManager.StartupExtensions;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -18,6 +19,11 @@ if (!app.Environment.IsDevelopment())
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    await DbInitializer.SeedAdminAndRolesAsync(services);
+}
 
 app.UseHttpsRedirection();
 app.UseAuthentication();
@@ -32,5 +38,5 @@ app.MapControllerRoute(
     pattern: "{controller=Home}/{action=Index}/{id?}")
     .WithStaticAssets();
 
-
+const string identityManagerPath = "IdentityManager";
 app.Run();
