@@ -3,7 +3,8 @@
 namespace IdentityManager.Models.ViewModel
 {
     public class RegisterViewModel
-    {  [Required]
+    {
+        [Required]
         public string Name { get; set; }
         [Required]
         [EmailAddress]

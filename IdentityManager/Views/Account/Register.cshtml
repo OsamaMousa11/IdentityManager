@@ -1,0 +1,53 @@
+﻿@using IdentityManager.Models.ViewModel
+@model RegisterViewModel
+@{
+    ViewData["Title"] = "Register";
+}
+
+<div class="row col-md-10 offset-md-1">
+    <h1 class="text-primary text-center pt-2">Register</h1>
+    <form asp-action="Register" asp-controller="Account" method="post">
+        <div class="border p-2 rounded">
+            <p class="text-center">create a new Account</p>
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="form-group">
+                 <label asp-for="Email" class="col-12">Email</label>
+                 <div class="col-md-12">
+                     <input asp-for="Email" class="form-control"/>
+                     <span asp-validation-for="Email" class="text-danger"></span>
+                 </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Name" class="col-12"></label>
+                <div class="col-md-12">
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="Password" class="col-12"></label>
+                <div class="col-md-12">
+                    <input asp-for="Password" class="form-control" />
+                    <span asp-validation-for="Password" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-group">
+                <label asp-for="ConfirmPassword" class="col-12"></label>
+                <div class="col-md-12">
+                    <input asp-for="ConfirmPassword" class="form-control" />
+                    <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
+                </div>
+            </div
+            <div class="form-group pt-3">
+                <div class="col-md-6 offset-md-3">
+                    <button class="btn btn-success form-control" type="submit">
+                        Register
+                    </button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+@section Scripts{
+    <partial name="_ValidationScriptsPartial"></partial>
+}

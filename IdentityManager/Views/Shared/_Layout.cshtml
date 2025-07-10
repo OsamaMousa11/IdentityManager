@@ -1,13 +1,13 @@
-﻿<!DOCTYPE html>
+﻿﻿
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - IdentityManager</title>
-    <script type="importmap"></script>
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
-    <link rel="stylesheet" href="~/IdentityManager.styles.css" asp-append-version="true" />
+   
 </head>
 <body>
     <header>
@@ -27,6 +27,29 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
                         </li>
                     </ul>
+                    <ul class="navbar-nav">
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav-item">
+                                @User.Identity.Name
+                            </li>
+                            <li class="nav-item">
+                                <form asp-action="Logout" asp-controller="Account" method="post" class="form-inline">
+                                    <button type="submit" class="btn nav-link">Logout</button>
+                                </form>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Register" asp-area="">Register</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="Account" asp-action="Login" asp-area="">Login</a>
+                            </li>
+                        }
+
+                    </ul>
                 </div>
             </div>
         </nav>
@@ -39,7 +62,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2025 - IdentityManager - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2024 - IdentityManager - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
@@ -48,3 +71,52 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+<style>
+    a.navbar-brand {
+        white-space: normal;
+        text-align: center;
+        word-break: break-all;
+    }
+
+    a {
+        color: #0077cc;
+    }
+
+    .btn-primary {
+        color: #fff;
+        background-color: #1b6ec2;
+        border-color: #1861ac;
+    }
+
+    .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+        color: #fff;
+        background-color: #1b6ec2;
+        border-color: #1861ac;
+    }
+
+    .border-top {
+        border-top: 1px solid #e5e5e5;
+    }
+
+    .border-bottom {
+        border-bottom: 1px solid #e5e5e5;
+    }
+
+    .box-shadow {
+        box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .05);
+    }
+
+    button.accept-policy {
+        font-size: 1rem;
+        line-height: inherit;
+    }
+
+    .footer {
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        white-space: nowrap;
+        line-height: 60px;
+    }
+    
+ </style>
